@@ -1,0 +1,3 @@
+clerk-backend-api
+django
+django-cors-headers
