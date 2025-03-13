@@ -21,11 +21,11 @@ class JwtAuthentication(authentication.BaseAuthentication):
         if not token:
             raise NotAuthenticated('No token provided')
 
-        url = settings.CLERK_JWKS_URL
-        response = urlopen(url)
-        data_json = json.loads(response.read())
-        print(token)
         try:
+            url = settings.CLERK_JWKS_URL
+            response = urlopen(url)
+            data_json = json.loads("{}")
+            print(token)
             decoded = jwt.decode(token, data_json['keys'][0], algorithms=['RS256'])
         except JWTError:
             raise NotAuthenticated('Invalid token')
