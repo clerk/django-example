@@ -27,7 +27,7 @@ class JwtAuthentication(authentication.BaseAuthentication):
             data_json = json.loads("{}")
             print(token)
             decoded = jwt.decode(token, data_json['keys'][0], algorithms=['RS256'])
-        except JWTError:
+        except Exception:
             raise NotAuthenticated('Invalid token')
 
         # Ideally at this point user object must be fetched from DB and returned, but we will just return a dummy
