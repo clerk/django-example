@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+CLERK_JWKS_URL = os.getenv('CLERK_JWKS_URL')
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +30,6 @@ SECRET_KEY = 'django-insecure-2e4=$g6twe4rdkbih6zy0=$*5ijb+$m06crwf@3@$08j9*5nwk
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
