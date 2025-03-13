@@ -4,7 +4,7 @@ from urllib.request import urlopen
 from django.contrib.auth.models import User
 from rest_framework import authentication
 from rest_framework.exceptions import NotAuthenticated
-from jose import jwt, JWTError
+from jose import jwt
 
 from clerkproject import settings
 
@@ -12,7 +12,7 @@ from clerkproject import settings
 class JwtAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
 
-        if 'authorization' not in request.headers:
+        if 'Authorization' not in request.headers:
             raise NotAuthenticated('No token provided')
 
         # Strip the "Bearer " prefix from the header
@@ -24,8 +24,7 @@ class JwtAuthentication(authentication.BaseAuthentication):
         try:
             url = settings.CLERK_JWKS_URL
             response = urlopen(url)
-            data_json = json.loads("{}")
-            print(token)
+            data_json = json.loads(response.read())
             decoded = jwt.decode(token, data_json['keys'][0], algorithms=['RS256'])
         except Exception:
             raise NotAuthenticated('Invalid token')
