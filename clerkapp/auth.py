@@ -11,11 +11,11 @@ from clerkproject import settings
 
 class JwtAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
-        # Strip the "Bearer " prefix from the header
 
         if 'authorization' not in request.headers:
             raise NotAuthenticated('No token provided')
 
+        # Strip the "Bearer " prefix from the header
         token = request.headers['Authorization'][7:]
 
         if not token:
