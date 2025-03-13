@@ -1,0 +1,4 @@
+Django==4.2.20
+python-jose
+django-cors-headers
+python-dotenv
