@@ -1,6 +1,11 @@
 1. Ensure `CLERK_API_SECRET_KEY` and `CLERK_AUTHORIZED_PARTIES` is set in your environment variables. `CLERK_AUTHORIZED_PARTIES` is a comma-separated list of allowed parties for example `http://localhost:5173`
 
-2. Install dependencies with `pip install -r requirements.txt`
+2. Install dependencies with 
+```commandline
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 3. Run `python3 manage.py runserver`
 
