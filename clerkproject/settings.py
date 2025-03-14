@@ -15,7 +15,10 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-CLERK_JWKS_URL = os.getenv('CLERK_JWKS_URL')
+CLERK_API_SECRET_KEY = os.getenv('CLERK_API_SECRET_KEY')
+
+# comma separated list of authorized parties
+CLERK_AUTHORIZED_PARTIES = os.getenv('CLERK_AUTHORIZED_PARTIES')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

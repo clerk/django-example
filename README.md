@@ -1,4 +1,4 @@
-1. Ensure `CLERK_JWKS_URL` is set in your environment variables. This is the URL that Clerk uses to verify JWTs. This can be found in clerk dashboard under `"Configure" -> "Developers" -> "API keys" -> "JWKS URL"`
+1. Ensure `CLERK_API_SECRET_KEY` and `CLERK_AUTHORIZED_PARTIES` is set in your environment variables. `CLERK_AUTHORIZED_PARTIES` is a comma-separated list of allowed parties for example `http://localhost:5173`
 
 2. Install dependencies with `pip install -r requirements.txt`
 
