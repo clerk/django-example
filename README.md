@@ -2,14 +2,6 @@
 
 A demonstration of using Clerk JWT authentication with Django. This example shows how to integrate Clerk's user authentication with a Django backend API.
 
-## Installation 
-
-```commandline
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
 ## Configuration
 
 Set the required environment variables:
@@ -19,6 +11,14 @@ $ export CLERK_API_SECRET_KEY=your_secret_key
 
 # Set authorized parties (comma-separated list of allowed origins)
 $ export CLERK_AUTHORIZED_PARTIES=http://localhost:5173
+```
+
+## Installation 
+
+```commandline
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Running 
