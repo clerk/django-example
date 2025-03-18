@@ -18,7 +18,8 @@ load_dotenv()
 CLERK_API_SECRET_KEY = os.getenv('CLERK_API_SECRET_KEY')
 
 # comma separated list of authorized parties
-CLERK_AUTHORIZED_PARTIES = os.getenv('CLERK_AUTHORIZED_PARTIES')
+CLERK_AUTHORIZED_PARTIES = os.getenv("CLERK_AUTHORIZED_PARTIES").split(",") if os.getenv('CLERK_AUTHORIZED_PARTIES') else []
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,7 +65,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = CLERK_AUTHORIZED_PARTIES
+
 
 ROOT_URLCONF = 'clerkproject.urls'
 
