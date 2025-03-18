@@ -42,7 +42,7 @@ function ApiExample() {
   const fetchData = async () => {
     if (getToken) {
       // Get the userId or null if the token is invalid
-      let res = await fetch("http://localhost:8765/clerk_jwt", {
+      let res = await fetch("http://localhost:8000/clerk_jwt", {
           headers: {
               "Authorization": `Bearer ${await getToken()}`
           }
@@ -50,7 +50,7 @@ function ApiExample() {
       console.log(await res.json()); // {userId: 'the_user_id_or_null'}
 
       // Get gated data or a 401 Unauthorized if the token is not valid
-      res = await fetch("http://localhost:8765/gated_data", {
+      res = await fetch("http://localhost:8000/gated_data", {
           headers: {
               "Authorization": `Bearer ${await getToken()}`
           }
