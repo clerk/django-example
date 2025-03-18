@@ -10,15 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path
-from dotenv import load_dotenv
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-CLERK_JWKS_URL = os.getenv('CLERK_JWKS_URL')
+CLERK_API_SECRET_KEY = os.getenv('CLERK_API_SECRET_KEY')
+CLERK_AUTHORIZED_PARTIES = os.getenv("CLERK_AUTHORIZED_PARTIES").split(",") if os.getenv('CLERK_AUTHORIZED_PARTIES') else []
 
+CORS_ALLOWED_ORIGINS = CLERK_AUTHORIZED_PARTIES
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -53,8 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'clerkproject.urls'
 

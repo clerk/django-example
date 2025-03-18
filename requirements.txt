@@ -1,5 +1,5 @@
 Django==4.2.20
 djangorestframework
-python-jose
 django-cors-headers
 python-dotenv
+clerk-backend-api

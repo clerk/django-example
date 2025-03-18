@@ -1,10 +1,7 @@
-import json
-from urllib.request import urlopen
-
+from clerk_backend_api import authenticate_request, AuthenticateRequestOptions
 from django.contrib.auth.models import User
 from rest_framework import authentication
 from rest_framework.exceptions import NotAuthenticated
-from jose import jwt
 
 from clerkproject import settings
 
@@ -22,16 +19,21 @@ class JwtAuthentication(authentication.BaseAuthentication):
             raise NotAuthenticated('No token provided')
 
         try:
-            url = settings.CLERK_JWKS_URL
-            response = urlopen(url)
-            data_json = json.loads(response.read())
-            decoded = jwt.decode(token, data_json['keys'][0], algorithms=['RS256'])
+            request_state = authenticate_request(
+                request,
+                AuthenticateRequestOptions(
+                    secret_key=settings.CLERK_API_SECRET_KEY,
+                    authorized_parties=settings.CLERK_AUTHORIZED_PARTIES,
+                ),
+            )
+            if request_state.reason:
+                return None
         except Exception:
             raise NotAuthenticated('Invalid token')
 
         # Ideally at this point user object must be fetched from DB and returned, but we will just return a dummy
         # user object
-        user = User(username=decoded['sub'], password="None")
+        user = User(username=request_state.payload["sub"], password="None")
         return user, None
 
     def authenticate_header(self, request):
