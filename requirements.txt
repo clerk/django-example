@@ -1,0 +1,4 @@
+Django==4.2.20
+django-cors-headers
+python-dotenv
+clerk-backend-api
